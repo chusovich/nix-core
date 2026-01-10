@@ -6,7 +6,7 @@
   };
 
   outputs = { self, nixpkgs }: {
-    coreModules = {
+    serverModules = {
       # use default to import all
       default = import ./modules;
       
