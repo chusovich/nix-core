@@ -25,7 +25,7 @@ core nix modules for all my servers
       modules = [
         nix-core.serverModules.default
         # or pick individual ones:
-        # my-modules.nixosModules.docker
+        # nix-core.serverModules.beszel
       ];
     };
   };
