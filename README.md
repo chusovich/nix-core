@@ -2,10 +2,10 @@
 core nix modules for all my servers
 
 ## Modules Include
-- Promethues Exporter: all the stats
-- Docker: everything is a container these days
-- Beszel Agent: more stats
-- Common server setup: ssh, some common packages
+- Promethues Exporter 🔥: all the stats
+- Docker 🐳: everything is a container these days
+- Beszel Agent ✔️ : more stats
+- Common server setup 🕐: ssh, some common packages, ...
 
 ## Example Usuage
 ```nix
