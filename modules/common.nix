@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myModules.common.enable =
-    lib.mkEnableOption "Common defaults";
+  # Enable Flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];  
 
-  config = lib.mkIf config.myModules.common.enable {
-    environment.systemPackages 
-    
-  };
+  # Include some basic packages
+  environment.systemPackages = with pkgs; [
+    just
+  ];    
 }
