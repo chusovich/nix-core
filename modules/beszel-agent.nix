@@ -4,6 +4,6 @@
   services.beszel.agent = {
     enable = true;
     openFirewall = true;
-    environmentFile = "/home/nix-core/beszel.env"
+    environmentFile = "/home/nix-core/beszel-agent.env"
   };
 }
