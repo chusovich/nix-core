@@ -8,7 +8,7 @@
   users.users.nix-core = {
     isNormalUser = true;
     description = "A base user account";
-    initialPassword = "password"
+    initialPassword = "password";
     extraGroups = [ "docker" ];
   };
 
