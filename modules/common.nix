@@ -10,5 +10,6 @@
   # Include some basic packages
   environment.systemPackages = with pkgs; [
     git
+    helix
   ];    
 }
