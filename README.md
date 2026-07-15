@@ -10,7 +10,7 @@ core nix modules for all my servers
 ```nix
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nix-core = {
       url = "github:chusovich/nix-core/0.1.0";
       inputs.nixpkgs.follows = "nixpkgs";

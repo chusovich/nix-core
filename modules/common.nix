@@ -11,5 +11,7 @@
   environment.systemPackages = with pkgs; [
     git
     helix
+    opencode
+    mcp-nixos
   ];    
 }
