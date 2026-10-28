@@ -4,9 +4,6 @@
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
 
-  # Disable adding users on the fly
-  users.mutableUsers = false;
-
   # Create admin user
   users.users.admin = {
     description = "Server admin user";
