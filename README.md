@@ -11,20 +11,22 @@ core nix modules for all my servers
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-core = {
       url = "github:chusovich/nix-core/0.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nix-core, ... }: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, nix-core, ... }: {
     nixosConfigurations.myhost = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit nixpkgs-unstable; };
 
       modules = [
         nix-core.serverModules.default
         # or pick individual ones:
-        # nix-core.modules.docker
+        # nix-core.serverModules.docker
       ];
     };
   };

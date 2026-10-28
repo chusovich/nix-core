@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nixpkgs-unstable, ... }:
 
+let
+  pkgsUnstable = import nixpkgs-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = config.nixpkgs.config;
+  };
+in
 {
   # Enable Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];  
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable SSH
   services.openssh.enable = true;
@@ -12,7 +18,7 @@
     git
     helix
     just
-    opencode
-    mcp-nixos
-  ];    
+    pkgsUnstable.opencode
+    pkgsUnstable.mcp-nixos
+  ];
 }
