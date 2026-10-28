@@ -26,8 +26,8 @@
   };
 
   # Keep a reasonable rollback window for system generations.
-  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10
-
+  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
+  
   # Set default time zone
   time.timeZone = lib.mkDefault "America/New_York";
 }
