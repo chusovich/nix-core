@@ -4,6 +4,17 @@
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
 
+  # Disable adding users on the fly
+  users.mutableUsers = false;
+
+  # Create admin user
+  users.users.admin = {
+    description = "Server admin user"
+    isNormalUser = true;
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    initialPassword = "password";
+  };
+  
   # Enable SSH
   services.openssh.enable = true;
 
