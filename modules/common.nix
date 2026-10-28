@@ -9,7 +9,7 @@
 
   # Create admin user
   users.users.admin = {
-    description = "Server admin user"
+    description = "Server admin user";
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     initialPassword = "password";
