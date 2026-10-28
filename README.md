@@ -13,7 +13,7 @@ core nix modules for all my servers
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-core = {
-      url = "github:chusovich/nix-core/0.1.0";
+      url = "github:chusovich/nix-core/v2026.10.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
