@@ -1,5 +1,7 @@
+{ config, lib, pkgs, ... }:
 
-  
+{
+  # Beszel monitoring agent
   services.beszel.agent = {
     enable = true;
     environment = {
@@ -9,3 +11,4 @@
       TOKEN = "f1abf1a6-efc8-4ff4-b14c-c9fc6bfaa153";
      };
   };
+}
