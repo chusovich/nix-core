@@ -4,7 +4,7 @@
   # Tailscale Mesh VPN
   services.tailscale = {
     enable = true;
-    # authKeyFile = "/home/calebh/secrets/tailscale_key";
+    authKeyFile = lib.mkDefault "/var/lib/secrets/tailscale_auth_key";
     extraUpFlags = [
       "--reset"
       "--ssh"
