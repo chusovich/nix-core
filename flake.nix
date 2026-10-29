@@ -14,7 +14,7 @@
       docker = import ./modules/docker.nix;
       prometheus-exporters = import ./modules/prometheus-exporters.nix;
       common = import ./modules/common.nix;
-      ai = import ./modules/ai.nix
+      ai = import ./modules/ai.nix;
     };
   };
 }
