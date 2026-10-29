@@ -8,7 +8,7 @@
     extraUpFlags = [
       "--reset"
       "--ssh"
-      "--advertise-tags tag:server"
+      "--advertise-tags=tag:server"
     ];
   };
 }
