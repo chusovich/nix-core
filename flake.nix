@@ -15,6 +15,7 @@
       prometheus-exporters = import ./modules/prometheus-exporters.nix;
       common = import ./modules/common.nix;
       ai = import ./modules/ai.nix;
+      tailscale = import ./modules/tailscale.nix;
     };
   };
 }
