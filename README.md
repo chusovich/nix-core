@@ -2,6 +2,7 @@
 core nix modules for all my servers
 
 ## Modules Include
+- ⚠️ Beszel Agent: what's going on
 - 🕝 Common server setup: base user, ssh, some common packages, ...
 - 🐳 Docker: everything is a container these days
 - 🌐 Tailscale: mesh network of choice
