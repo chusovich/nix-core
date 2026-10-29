@@ -2,9 +2,11 @@
 core nix modules for all my servers
 
 ## Modules Include
-- 🔥 Promethues Exporter: all the stats
-- 🐳 Docker: everything is a container these days
 - 🕝 Common server setup: base user, ssh, some common packages, ...
+- 🐳 Docker: everything is a container these days
+- 🌐 Tailscale: mesh network of choice
+- 🤖 AI: OpenCode, since bots know best
+- 🔥 Promethues Exporter: all the stats
 
 ## Example Flake
 ```nix
