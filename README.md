@@ -2,12 +2,12 @@
 core nix modules for all my servers
 
 ## Modules Include
-- ⚠️ Beszel Agent: what's going on
-- 🕝 Common server setup: base user, ssh, some common packages, ...
-- 🐳 Docker: everything is a container these days
-- 🌐 Tailscale: mesh network of choice
-- 🤖 AI: OpenCode, since bots know best
-- 🔥 Promethues Exporter: all the stats
+- ⚠️ `beszel-agent`: what's going on
+- 🕝 `common`: base user, ssh, some common packages, ...
+- 🐳 `docker`: everything is a container these days
+- 🌐 `tailscale`: mesh network of choice
+- 🤖 `ai`: OpenCode, since bots know best
+- 🔥 `promethues-exporters`: all the stats
 
 ## Example Flake
 ```nix
