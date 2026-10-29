@@ -16,6 +16,7 @@
       common = import ./modules/common.nix;
       ai = import ./modules/ai.nix;
       tailscale = import ./modules/tailscale.nix;
+      beszel-agent = import ./modules/beszel-agent.nix;
     };
   };
 }
