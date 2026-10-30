@@ -8,7 +8,7 @@
   users.users.admin = {
     description = "Server admin user";
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     initialPassword = "password";
   };
   
@@ -21,8 +21,6 @@
     gh
     helix
     just
-    opencode
-    mcp-nixos
   ];    
 
   # Configure weekly garbage collection
