@@ -6,9 +6,9 @@
     enable = true;
     environment = {
       LISTEN = "45876";
-      KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKHMo4d4U9y7xxAzSmjUt2ce3Zh/3+bPL3IP1aM71up1";
+      KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/5J1jgxg8L7bkiFuGv+Y8doBXrAaqW3npi1Sm+9mTw";
       HUB_URL = "https://beszel.services.husovich.com";
-      TOKEN = "f1abf1a6-efc8-4ff4-b14c-c9fc6bfaa153";
+      TOKEN = "7e0d6f07-2536-4251-b253-db6ee05e3289";
      };
   };
 }
