@@ -1,8 +1,9 @@
 {
   imports = [
-    ./docker.nix
-    ./prometheus-exporters.nix
+    ./beszel-agent.nix
     ./common.nix
+    ./docker.nix
+    ./tailscale.nix
     ./ai.nix
   ];
 }
