@@ -2,8 +2,9 @@
 core nix modules for all my servers
 
 ## Modules Include
-- 📈 `beszel-agent`: monitoring agent, runs as a rootless podman container under `container-admin` with secrets via agenix
-- 🕝 `common`: base user, ssh, some common packages, ...
+- 📈 `beszel-agent`: monitoring agent, runs as a rootless podman container under `admin` with secrets via agenix
+- 🕝 `common`: ssh, some common packages, ...
+- 👤 `admin`: admin user, imported by `beszel-agent`
 - 🐳 `docker`: everything is a container these days
 - 🦭 `podman`: because open source
 - 🌐 `tailscale`: mesh network of choice
@@ -82,8 +83,8 @@ Declare it in the module that uses it, and give ownership to the user that runs 
 ```nix
 age.secrets.beszel-env = {
   file = ../secrets/beszel-env.age;
-  owner = "container-admin";
-  group = "container-admin";
+  owner = "admin";
+  group = "users";
   mode = "0400";
 };
 ```

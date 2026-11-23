@@ -1,5 +1,6 @@
 {
   imports = [
+    ./admin.nix
     ./beszel-agent.nix
     ./common.nix
     ./docker.nix

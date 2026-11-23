@@ -4,14 +4,6 @@
   # Enable Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];  
 
-  # Create admin user
-  users.users.admin = {
-    description = "Server admin user";
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
-    initialPassword = "password";
-  };
-  
   # Enable SSH
   services.openssh.enable = true;
 
