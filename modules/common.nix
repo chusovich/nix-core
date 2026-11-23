@@ -28,4 +28,10 @@
   
   # Set default time zone
   time.timeZone = lib.mkDefault "America/New_York";
+
+  users.users.admin = {
+    description = "Server admin user";
+    isNormalUser = true;
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+  };
 }

@@ -21,7 +21,6 @@
 
       # Import individual modules
       docker = import ./modules/docker.nix;
-      podman = import ./modules/podman.nix;
       prometheus-exporters = import ./modules/prometheus-exporters.nix;
       common = import ./modules/common.nix;
       ai = import ./modules/ai.nix;

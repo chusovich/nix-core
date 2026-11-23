@@ -2,15 +2,14 @@
 
 {
   imports = [
-    ./podman.nix
-    ./admin.nix
+    ./docker.nix
   ];
 
   # Beszel monitoring agent
   age.identityPaths = [ "/var/lib/agenix/beszel-server.key" ];
   age.secrets.beszel-env = {
     file = ../secrets/beszel-env.age;
-    owner = "admin";
+    owner = "root";
     group = "users";
     mode = "0400";
   };
@@ -18,15 +17,13 @@
   virtualisation.oci-containers.containers.beszel-agent = {
     image = "docker.io/henrygd/beszel-agent:0.21.2";
     pull = "newer";
-    podman.user = "admin";
     extraOptions = [ "--network=host" ];
     volumes = [
-      "/run/user/1111/podman/podman.sock:/run/podman/podman.sock:ro"
+      "/var/run/docker.sock:/var/run/docker.sock:ro"
     ];
     environment = {
-      DOCKER_HOST = "unix:///run/podman/podman.sock";
+      DOCKER_HOST = "unix:///var/run/docker.sock";
       LISTEN = "45876";
-      KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/5J1jgxg8L7bkiFuGv+Y8doBXrAaqW3npi1Sm+9mTw";
       HUB_URL = "https://beszel.services.husovich.com";
     };
     environmentFiles = [ config.age.secrets.beszel-env.path ];
