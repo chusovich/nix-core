@@ -20,7 +20,11 @@
     pull = "newer";
     podman.user = "admin";
     extraOptions = [ "--network=host" ];
+    volumes = [
+      "/run/user/1111/podman/podman.sock:/run/podman/podman.sock:ro"
+    ];
     environment = {
+      DOCKER_HOST = "unix:///run/podman/podman.sock";
       LISTEN = "45876";
       KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/5J1jgxg8L7bkiFuGv+Y8doBXrAaqW3npi1Sm+9mTw";
       HUB_URL = "https://beszel.services.husovich.com";
