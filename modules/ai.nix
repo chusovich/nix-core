@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Opencode and a nix mcp server
+  # Opencode and a Nix MCP server
   environment.systemPackages = with pkgs; [
     opencode
     mcp-nixos

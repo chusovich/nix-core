@@ -4,5 +4,6 @@
     ./common.nix
     ./docker.nix
     ./tailscale.nix
+    ./ai.nix
   ];
 }
