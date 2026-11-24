@@ -7,7 +7,7 @@
 
   # Beszel monitoring agent
   virtualisation.oci-containers.containers.beszel-agent = {
-    image = "docker.io/henrygd/beszel-agent:0.21.2";
+    image = "henrygd/beszel-agent:0.21.2";
     extraOptions = [ "--network=host" ];
     volumes = [
       "/var/run/docker.sock:/var/run/docker.sock:ro"
