@@ -15,10 +15,10 @@
     environment = {
       LISTEN = "45876";
       HUB_URL = "https://beszel.services.husovich.com";
-      DISABLE_SSH = true;
+      DISABLE_SSH = "true";
       DATA_DIR = "/var/lib/beszel-agent";
-      SKIP_GPU = true;
-      SKIP_WIFI = true;
+      SKIP_GPU = "true";
+      SKIP_WIFI = "true";
       TOKEN_FILE = "/var/lib/secrets/beszel_token";
     };
   };
