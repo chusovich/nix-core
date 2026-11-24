@@ -15,7 +15,7 @@
     ];
     environment = {
       LISTEN = "45876";
-      HUB_URL = "https://beszel.services.husovich.com";
+      HUB_URL = "http://jason:8090";
       DISABLE_SSH = "true";
       DATA_DIR = "/var/lib/beszel-agent";
       SKIP_GPU = "true";
