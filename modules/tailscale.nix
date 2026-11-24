@@ -1,7 +1,7 @@
 { lib, ... }:
 
 {
-  # Tailscale msh VPN
+  # Tailscale mesh VPN
   services.tailscale = {
     enable = true;
 

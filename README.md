@@ -33,58 +33,53 @@ core nix modules for all my servers
 }
 ```
 
-## Secrets (agenix)
+## Secrets (host-local files)
 
-Secrets are encrypted with [agenix](https://github.com/ryantm/agenix) and stored in `secrets/`. The rules file `agenix-rules.nix` lists each secret and the age public keys allowed to decrypt it:
+The Tailscale and Beszel modules read secret files directly from each server. Their contents are not stored in this repository or embedded in the Nix store:
 
-```nix
-"secrets/beszel-env.age".publicKeys = [ personal beszelServer ];
-```
+| Path | Contents |
+| --- | --- |
+| `/var/lib/secrets/tailscale_auth_key` | Tailscale auth key as one plain line, without a `KEY=` prefix |
+| `/var/lib/secrets/beszel-env` | Beszel agent variables in `NAME=value` format, one per line |
 
-- `personal` is your age public key, used to edit secrets from your workstation.
-- `beszelServer` is the public key of the host that decrypts the secret at boot. It must match the private key at the identity path in `modules/beszel-agent.nix` (`/var/lib/agenix/beszel-server.key`).
+### Set up a server
 
-### Set up a new host
-
-1. Put the host's age private key at the identity path, e.g. `/var/lib/agenix/beszel-server.key`, with root-only permissions.
-2. Get its public key:
-   ```sh
-   age-keygen -y /var/lib/agenix/beszel-server.key
-   ```
-3. Add a `let` binding for it in `agenix-rules.nix` and add it to the `publicKeys` of every secret that host needs.
-4. Re-encrypt existing secrets so the new host can read them (see "Rotate keys" below).
-
-### Create or edit a secret
-
-Run from the repo root with your personal key available:
+Create the directory on the server with root-only access:
 
 ```sh
-RULES=./agenix-rules.nix agenix -e secrets/beszel-env.age -i ~/.ssh/id_ed25519
+sudo install -d -o root -g root -m 0700 /var/lib/secrets
 ```
 
-The file opens in `$EDITOR` as plain text. Use `KEY=VALUE` lines for the environment file. Save and quit to re-encrypt.
-
-To add a new secret, add an entry to `agenix-rules.nix` first, then run the same command with the new filename.
-
-### Rotate keys
-
-After changing any `publicKeys` list, re-encrypt existing secrets so the new recipients can read them:
+Create empty, root-only files, then edit them with `sudoedit` so their contents are not passed as shell arguments:
 
 ```sh
-RULES=./agenix-rules.nix agenix -r -i ~/.ssh/id_ed25519
+sudo install -o root -g root -m 0400 /dev/null /var/lib/secrets/tailscale_auth_key
+sudo install -o root -g root -m 0400 /dev/null /var/lib/secrets/beszel-env
+sudoedit /var/lib/secrets/tailscale_auth_key
+sudoedit /var/lib/secrets/beszel-env
 ```
 
-### Use a secret in a module
+Put only the auth key in `tailscale_auth_key`. Put the environment variables expected by your Beszel agent in `beszel-env`; use `NAME=value` lines and do not add `export`.
 
-Declare it in the module that uses it, and give ownership to the user that runs the service:
+Set ownership and permissions, then verify them:
 
-```nix
-age.secrets.beszel-env = {
-  file = ../secrets/beszel-env.age;
-  owner = "root";
-  group = "users";
-  mode = "0400";
-};
+```sh
+sudo chown root:root /var/lib/secrets/tailscale_auth_key /var/lib/secrets/beszel-env
+sudo chmod 0400 /var/lib/secrets/tailscale_auth_key /var/lib/secrets/beszel-env
+sudo stat -c '%U:%G %a %n' /var/lib/secrets /var/lib/secrets/*
 ```
 
-The decrypted file is available at `config.age.secrets.beszel-env.path` (under `/run/agenix/`).
+The directory should be `root:root` mode `700`; each file should be `root:root` mode `400`. Create the files before activating the NixOS configuration. Keep backups outside the Nix store and repository. Anyone with root access to the server can read these files.
+
+### Deploy files over SSH
+
+Keep local source files outside the repository and deploy each one individually:
+
+```sh
+./scripts/deploy-secret myserver tailscale_auth_key /secure/path/tailscale_auth_key
+./scripts/deploy-secret myserver beszel-env /secure/path/beszel-env
+```
+
+The script streams the file over SSH without displaying its contents, then installs it as root-owned mode `0400` under `/var/lib/secrets`. The SSH account must have non-interactive `sudo -n` access. Never commit the local source files.
+
+The old `secrets/beszel-env.age` and `agenix-rules.nix` are retained as a legacy encrypted backup; the modules no longer use agenix. The Tailscale auth key previously pasted into chat must be revoked and replaced before use.

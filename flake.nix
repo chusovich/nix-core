@@ -3,20 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, agenix, ... }: {
+  outputs = { self, nixpkgs, ... }: {
     nixosModules = {
-      # Import all modules
+      # Import all modules in /modules/default.nix
       default = {
-        imports = [
-          agenix.nixosModules.default
-          ./modules
-        ];
+        imports = [ ./modules ];
       };
 
       # Import individual modules
@@ -25,12 +18,7 @@
       common = import ./modules/common.nix;
       ai = import ./modules/ai.nix;
       tailscale = import ./modules/tailscale.nix;
-      beszel-agent = {
-        imports = [
-          agenix.nixosModules.default
-          ./modules/beszel-agent.nix
-        ];
-      };
+      beszel-agent = import ./modules/beszel-agent.nix;
     };
   };
 }
