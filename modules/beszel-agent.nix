@@ -20,7 +20,7 @@
       SKIP_GPU = "true";
       SKIP_WIFI = "true";
       TOKEN_FILE = "/var/lib/secrets/beszel_token";
-      KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/5J1jgxg8L7bkiFuGv+Y8doBXrAaqW3npi1Sm+9mTw";
+      KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpOOYjkDYuZVd9/WMHlqt/pzf/9FfOuobGRbEw281aN";
     };
   };
 }
