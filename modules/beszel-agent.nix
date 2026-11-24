@@ -11,6 +11,7 @@
     extraOptions = [ "--network=host" ];
     volumes = [
       "/var/run/docker.sock:/var/run/docker.sock:ro"
+      "/var/lib/secrets/beszel_token:/var/lib/secrets/beszel_token:ro"
     ];
     environment = {
       LISTEN = "45876";
