@@ -7,8 +7,10 @@
 
   outputs = { self, nixpkgs, ... }: {
     nixosModules = {
-      # Import all modules
-      default = import ./modules;      
+      # Import all modules in /modules/default.nix
+      default = {
+        imports = [ ./modules ];
+      };
 
       # Import individual modules
       docker = import ./modules/docker.nix;

@@ -1,14 +1,25 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
+  imports = [
+    ./docker.nix
+  ];
+
   # Beszel monitoring agent
-  services.beszel.agent = {
-    enable = true;
+  virtualisation.oci-containers.containers.beszel-agent = {
+    image = "henrygd/beszel-agent:0.21.2";
+    extraOptions = [ "--network=host" ];
+    volumes = [
+      "/var/run/docker.sock:/var/run/docker.sock:ro"
+    ];
     environment = {
       LISTEN = "45876";
-      KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/5J1jgxg8L7bkiFuGv+Y8doBXrAaqW3npi1Sm+9mTw";
       HUB_URL = "https://beszel.services.husovich.com";
-      TOKEN = "d0a2dbe3-0463-4e0f-abc6-7ff1208b46e8";
-     };
+      DISABLE_SSH = true;
+      DATA_DIR = "/var/lib/beszel-agent";
+      SKIP_GPU = true;
+      SKIP_WIFI = true;
+      TOKEN_FILE = "/var/lib/secrets/beszel_token";
+    };
   };
 }
