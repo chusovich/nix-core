@@ -33,6 +33,7 @@
   users.users.admin = {
     description = "Server admin user";
     isNormalUser = true;
+    initialPassword = "password";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 }
