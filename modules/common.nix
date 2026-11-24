@@ -29,6 +29,7 @@
   # Set default time zone
   time.timeZone = lib.mkDefault "America/New_York";
 
+  # Admin user
   users.users.admin = {
     description = "Server admin user";
     isNormalUser = true;

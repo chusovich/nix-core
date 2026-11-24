@@ -22,7 +22,6 @@
       "/var/run/docker.sock:/var/run/docker.sock:ro"
     ];
     environment = {
-      DOCKER_HOST = "unix:///var/run/docker.sock";
       LISTEN = "45876";
       HUB_URL = "https://beszel.services.husovich.com";
     };
